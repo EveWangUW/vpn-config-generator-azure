@@ -7,7 +7,7 @@ import fetch from 'node-fetch'
 const app = express()
 const port = 7779
 
-app.use(express.static('public'));
+app.use(express.static('public', { index: false }));
 
 app.get('/', async (req, res) => {
     const metadataUrl = 'http://169.254.169.254/latest/meta-data/public-ipv4';
@@ -20,11 +20,6 @@ app.get('/', async (req, res) => {
         const publicIP = await response.text();
 
         const data = await fs.readFile('public/index.html', 'utf8');
-        if (err) {
-            console.error('Error reading HTML file:', err);
-            return res.status(500).send('Server error');
-        }
-        
         const updatedHtml = data.replace('{{PUBLIC_IP}}', publicIP);
 
         res.send(updatedHtml);

@@ -19,15 +19,14 @@
         })();
 
         function download() {
-	    fetch('http://{{PUBLIC_IP}}:7779/vpn-download')
+	        fetch('http://{{PUBLIC_IP}}:7779/vpn-download')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 
                 return response.blob();
-            })
-            .then(blob => {
+            }).then(blob => {
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
