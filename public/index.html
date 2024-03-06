@@ -19,7 +19,7 @@
         })();
 
         function download() {
-	        fetch('http://{{PUBLIC_IP}}:7779/vpn-download')
+	        fetch('https://{{PUBLIC_IP}}/vpn-download')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
