@@ -199,7 +199,7 @@ async function generateVpnConfig(publicIP) {
         [Interface]
         PrivateKey = ${clientPrivateKey}
         Address = ${clientIp}/32
-        DNS = 192.168.77.1
+        DNS = 192.168.77.1, 8.8.8.8
         
         [Peer]
         PublicKey = ${serverPubKey}
