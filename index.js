@@ -25,7 +25,8 @@ app.get('/', async (req, res) => {
 
         res.send(updatedHtml);
     } catch (err) {
-        res.status(500).send('Error fetching public IP address');
+        //res.status(500).send('Error fetching public IP address');
+        res.status(500).send(`Error fetching public IP address: ${err.message}`);
         console.error('Failed to fetch metadata:', err.message);
     }
 });
@@ -45,7 +46,9 @@ app.get('/vpn-download', async (req, res) => {
         res.setHeader('Content-Disposition', 'attachment; filename=open-devsecops-vpn.conf');
         res.send(config);
     } catch (err) {
-        res.status(500).send('Error fetching public IP address');
+        //res.status(500).send('Error fetching public IP address');
+        res.status(500).send(`Error fetching public IP address: ${err.message}`);
+        console.error('Failed to fetch metadata:', err.message);
     }
 })
 
