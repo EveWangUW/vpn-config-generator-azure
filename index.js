@@ -26,13 +26,15 @@ app.get('/', async (req, res) => {
         res.send(updatedHtml);
     } catch (err) {
         res.status(500).send('Error fetching public IP address');
+        console.error('Failed to fetch metadata:', err.message);
     }
 });
 
 app.get('/vpn-download', async (req, res) => {
     const metadataUrl = 'http://169.254.169.254/metadata/instance/network/interface/0/ipv4/ipAddress/0/publicIpAddress?api-version=2021-02-01&format=text';
     try {
-        const response = await fetch(metadataUrl);
+        //const response = await fetch(metadataUrl);
+        const response = await fetch(metadataUrl, { headers: { 'Metadata': 'true' } });
         if (!response.ok) {
             throw new Error('Failed to fetch public IP');
         }
