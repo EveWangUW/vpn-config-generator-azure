@@ -67,7 +67,7 @@ async function generateVpnConfig(publicIP) {
     const clientIp = await findNextAvailableIp();
     const configUpdateCommand = `echo -e "\n[Peer]\nPublicKey = ${clientPubKey}\nAllowedIPs = ${clientIp}/32" >> /etc/wireguard/wg0.conf`;
     execSync(`bash -c '${configUpdateCommand}'`);
-    execSync('systemctl restart wg-quick@wg0.service');
+    execSync('sudo systemctl restart wg-quick@wg0.service');
 
     const clientConf = dedent(`
     [Interface]
