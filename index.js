@@ -10,7 +10,7 @@ const port = 7779
 app.use(express.static('public', { index: false }));
 
 app.get('/', async (req, res) => {
-    const metadataUrl = 'http://169.254.169.254/metadata/instance/network/interface/0/ipv4/ipAddress/0/ipAddress?api-version=2021-02-01&format=text';
+    const metadataUrl = 'http://169.254.169.254/metadata/instance/network/interface/0/ipv4/ipAddress/0/publicIpAddress?api-version=2021-02-01&format=text';
     try {
         //const response = await fetch(metadataUrl);
         const response = await fetch(metadataUrl, { headers: { 'Metadata': 'true' } });
@@ -30,7 +30,7 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/vpn-download', async (req, res) => {
-    const metadataUrl = 'http://169.254.169.254/metadata/instance/network/interface/0/ipv4/ipAddress/0/ipAddress?api-version=2021-02-01&format=text';
+    const metadataUrl = 'http://169.254.169.254/metadata/instance/network/interface/0/ipv4/ipAddress/0/publicIpAddress?api-version=2021-02-01&format=text';
     try {
         const response = await fetch(metadataUrl);
         if (!response.ok) {
